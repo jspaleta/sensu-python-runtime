@@ -1,0 +1,26 @@
+FROM alpine:3.8
+
+ARG PYTHON_VERSION=3.8.5
+ARG ASSET_VERSION=local_build
+LABEL name="sensu/sensu-python-runtime-alpine"
+
+RUN apk --no-cache add build-base gmp-dev zlib-dev bzip2-dev sqlite-dev gdbm-dev db-dev readline-dev libffi-dev coreutils yaml-dev linux-headers autoconf \
+  openssh-client openssl-dev libc6-compat \ 
+  wget git sudo bash bash-doc bash-completion
+
+COPY scripts/pyenv-install pyenv-install
+COPY scripts/binary_shim   binary_shim 
+RUN ./pyenv-install
+
+
+RUN LIBS=$(find /build/pyenv -type f -exec ldd {} 2>/dev/null \;|  grep "=>" | grep -v "vdso.so.1" | awk '{print $3}'| sort -u ) && \
+  for f in $LIBS; do if [ -e $f ]; then echo "Copying Library: $f" && cp $f /build/lib/; fi; done 
+
+RUN LIBS=$(apk info -L libc6-compat 2>/dev/null |  grep "^lib/lib" | sort -u ) && \
+  for f in $LIBS; do if [ -e $f ]; then echo "Copying Library: /$f" && cp /$f /build/lib/; fi; done 
+
+RUN mkdir /assets/ && \
+  export SENSU_ASSET="/assets/sensu-python-runtime_${ASSET_VERSION}_python-${PYTHON_VERSION}_alpine_$(uname -s | tr '[:upper:]' '[:lower:]')_amd64.tar.gz" && \
+  tar -czf $SENSU_ASSET -C /build/ .
+
+#ENV PATH=$PATH:/build/bin
