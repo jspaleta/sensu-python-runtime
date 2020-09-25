@@ -148,4 +148,7 @@ Please note the following instructions:
    unpack them, and successfully execute the `helloworld.py` command by
    resolving the Python shebang (`#!/usr/bin/env python`) to the Python runtime
    on the Sensu agent `$PATH`.:wq
+
+## Building Python Assets that need additional modules
+The Python runtime includes a basic set of standard python modules. If you want to use a python script that requires additional modules, you can package those additional modules with your script in an asset. However you will need to use a wrapper script that set the python module search path correctly.  Please take a look at [packaging python modules](docs/building_assets.md) for detailed instructions on steps to take.
    
