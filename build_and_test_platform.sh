@@ -37,12 +37,13 @@ fi
 test_arr=($test_platforms)
 for test_platform in "${test_arr[@]}"; do
   echo "Test: ${test_platform}"
-  docker run -e platform -e test_platform=${test_platform} -e asset_filename=${asset_filename} -v "$PWD/scripts/:/scripts" -v "$PWD/dist:/dist" ${test_platform} /scripts/test.sh
+  docker run --name python_runtime_platform_test -e platform -e test_platform=${test_platform} -e asset_filename=${asset_filename} -v "$PWD/tests/:/tests" -v "$PWD/dist:/dist" ${test_platform} /tests/test.sh
   retval=$?
   if [ $retval -ne 0 ]; then
     echo "!!! Error testing ${asset_filename} on ${test_platform}"
     exit $retval
   fi
+  docker rm python_runtime_platform_test
 done
 
 if [ -z "$TRAVIS_TAG" ]; then exit 0; fi

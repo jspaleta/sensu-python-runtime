@@ -7,9 +7,7 @@ pyenv install ${PYTHON_VERSION}
 mkdir -p build/bin
 mkdir -p build/lib
 cp -r $PYENV_ROOT build/pyenv
-cp  binary_shim build/bin
-cd build
-ln -s ./binary_shim python
-ln -s ./binary_shim pip
-pwd
+cd build/bin
+ln -s ../pyenv/versions/${PYTHON_VERSION}/bin/python python
+ln -s ../pyenv/versions/${PYTHON_VERSION}/bin/pip pip
 

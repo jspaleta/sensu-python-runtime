@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#/usr/bin/env sh
 
 # Absolute path to this script. /home/user/bin/foo.sh
 SCRIPT=$(readlink -f $0)
@@ -9,7 +9,6 @@ export PYENV_ROOT="${asset_path}/pyenv"
 export PYENV_VERSION=3.6.11
 export PYTHONPATH="${asset_path}/lib:$PYTHONPATH"
 
-#!/usr/bin/env bash
 set -e
 [ -n "$PYENV_DEBUG" ] && set -x
 
