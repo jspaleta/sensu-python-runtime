@@ -14,8 +14,8 @@ RUN apt-get install -y libsqlite0-dev
 RUN apt-get install -y libbz2-dev
 RUN apt-get install -y libreadline-dev
 RUN apt-get install -y libssl-dev
-RUN apt-get install -y curl
-RUN apt-get install -y git
+#RUN apt-get install -y curl
+#RUN apt-get install -y git
 
 COPY scripts/pyenv-install pyenv-install
 RUN ./pyenv-install
