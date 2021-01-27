@@ -4,13 +4,13 @@ metadata:
   created_by: admin
   labels:
     sensu.io/managed_by: sensuctl
-  name: local/python-example
+  name: local/python-py3-runtime
   namespace: default
 spec:
   builds:
   - filters: null
     # You will need to edit the sha512 and url to match your build
     sha512: '147c0c5ff4b1b027733d1a1bf0071b25f56df4cdeca8a11b7732cf39749b12d5b1c36394f0fc1af7438280211b442f00ac886e2ac4149fe5aac6bbcf1901c4bd'
-    url: http://localhost:9000/example-python-asset.tar.gz
+    url: http://localhost:9000/py3-runtime-python-asset.tar.gz
   filters: null
   headers: null
