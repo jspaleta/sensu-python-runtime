@@ -9,7 +9,7 @@ ARG GREP_EXCLUDE='(ld.so|ld-linux-x86-64.so|libBrokenLocale.so|libSegFault.so|li
 RUN cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.old
 COPY centos-base.repo /etc/yum.repos.d/CentOS-Base.repo
 RUN yum clean all
-RUN yum update -y
+RUN yum update
 RUN yum groupinstall -y "Development Tools"
 RUN yum install -y curl
 RUN yum install -y bzip2-devel
