@@ -7,9 +7,7 @@ ARG ASSET_VERSION=local_build
 ARG GREP_EXCLUDE='(ld.so|ld-linux-x86-64.so|libBrokenLocale.so|libSegFault.so|libanl.so|libc.so|libdl.so|libm.so|libmvec.so|libnss_compat.so|libnss_dns.so|libnss_files.so|libpthread.so|libresolv.so|librt.so|libthread_db.so|libutil.so|vdso.so)'
 
 
-RUN apt-get update && apt-get install -y build-essential zlib1g-dev libsqlite0-dev libbz2-dev libreadline-dev libssl-dev apt-utils
-RUN apt-get install -y git
-RUN apt-get install -y curl
+RUN apt-get update && apt-get install -y build-essential zlib1g-dev libsqlite0-dev libbz2-dev libreadline-dev libssl-dev apt-utils curl git
 
 COPY scripts/pyenv-install pyenv-install
 RUN ./pyenv-install
