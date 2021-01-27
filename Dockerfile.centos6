@@ -8,7 +8,15 @@ ARG GREP_EXCLUDE='(ld.so|ld-linux-x86-64.so|libBrokenLocale.so|libSegFault.so|li
 
 RUN cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.old
 COPY centos-base.repo /etc/yum.repos.d/CentOS-Base.repo
-RUN yum clean all && yum update -y && yum groupinstall -y "Development Tools" && yum install -y curl bzip2-devel zlib-devel sqlite-devel openssl-devel readline-devel
+RUN yum clean all
+RUN yum update -y
+RUN yum groupinstall -y "Development Tools"
+RUN yum install -y curl
+RUN yum install -y bzip2-devel
+RUN yum install -y zlib-devel
+RUN yum install -y sqlite-devel
+RUN yum install -y openssl-devel
+RUN yum install -y readline-devel
 
 COPY scripts/pyenv-install pyenv-install
 RUN ./pyenv-install
