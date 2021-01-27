@@ -8,7 +8,8 @@ ARG GREP_EXCLUDE='(ld.so|ld-linux-x86-64.so|libBrokenLocale.so|libSegFault.so|li
 
 
 RUN apt-get update && apt-get install -y build-essential zlib1g-dev libsqlite0-dev libbz2-dev libreadline-dev libssl-dev apt-utils
-RUN apt-get install -y curl git
+RUN apt-get install -y git
+RUN apt-get install -y curl
 
 COPY scripts/pyenv-install pyenv-install
 RUN ./pyenv-install
