@@ -2,7 +2,7 @@
   "type": "Asset",
   "api_version": "core/v2",
   "metadata": {
-    "name": "sensu-python-runtime-${PYTHON_VERSION}-debian",
+    "name": "sensu-python-runtime-${PYTHON_VERSION}-${OSVERSION//[[:digit:]]/}",
     "namespace": "default",
     "labels": {},
     "annotations": {}
@@ -13,7 +13,7 @@
     "filters": [
       "entity.system.os == 'linux'",
       "entity.system.arch == 'amd64'",
-      "entity.system.platform_family == 'debian'"
+      "entity.system.platform_family == '${OSVERSION//[[:digit:]]/}'"
     ]
   }
 }
