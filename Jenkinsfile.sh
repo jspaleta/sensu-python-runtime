@@ -12,4 +12,4 @@ export SSUM=$SSUM
 aws s3 cp ${ASSET_FILE_NAME} ${S3_LOCATION}
 export S3_FILE_URL=https://${S3_BUCKET}.s3.amazonaws.com${S3_FOLDER}${ASSET_FILE_NAME}
 rm -rf ${ASSET_FILE_NAME}
-echo "$(envsubst sensu-python-runtime-configuration-template.json)" > sensu-python-runtime-${PYTHON_VERSION}-${OSVERSION}.json
+echo $(envsubst < sensu-python-runtime-configuration-template.json) > sensu-python-runtime-${PYTHON_VERSION}-${OSVERSION}.json
