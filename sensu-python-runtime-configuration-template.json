@@ -2,18 +2,18 @@
   "type": "Asset",
   "api_version": "core/v2",
   "metadata": {
-    "name": "sensu-python-runtime-$(PYTHON_VERSION)-$(OSDISTRO)",
+    "name": "sensu-python-runtime-${PYTHON_VERSION}-${OSDISTRO}",
     "namespace": "default",
     "labels": {},
     "annotations": {}
   },
   "spec": {
-    "url": "$(S3_FILE_URL)",
-    "sha512": "$(SSUM)",
+    "url": "${S3_FILE_URL}",
+    "sha512": "${SSUM}",
     "filters": [
       "entity.system.os == 'linux'",
       "entity.system.arch == 'amd64'",
-      "entity.system.platform_family == $(OSDISTRO)"
+      "entity.system.platform_family == ${OSDISTRO}"
     ]
   }
 }
