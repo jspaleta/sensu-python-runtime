@@ -14,4 +14,4 @@ SSUM=$(sha512sum ${ASSET_FILE_NAME} | cut -d ' ' -f 1)
 export SSUM=$SSUM
 aws s3 cp ${ASSET_FILE_NAME} ${S3_LOCATION} --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 rm -rf ${ASSET_FILE_NAME}
-echo $(envsubst < sensu-python-runtime-configuration-template.json) > sensu-python-runtime-${PYTHON_VERSION}-${OSVERSION}.json
+echo $(envsubst < py3-runtime/asset.yml) > asset.yml
