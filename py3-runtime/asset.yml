@@ -14,5 +14,4 @@ spec:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'
     - entity.system.platform_family == 'centos'
-    # You will need to edit the sha512 and url to match your build
     headers: null
