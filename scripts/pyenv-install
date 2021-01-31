@@ -3,7 +3,8 @@ git clone https://github.com/pyenv/pyenv.git ~/.pyenv && \
 export PYENV_ROOT="$HOME/.pyenv" && \
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)" 
-pyenv install ${PYTHON_VERSION}
+sudo pyenv install ${PYTHON_VERSION}
+./../pyenv/versions/${PYTHON_VERSION}/bin/pip install -r requirements.txt
 mkdir -p build/bin
 mkdir -p build/lib
 cp -r $PYENV_ROOT build/pyenv

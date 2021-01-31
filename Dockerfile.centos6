@@ -19,6 +19,7 @@ RUN yum -y install openssl-devel
 RUN yum -y install readline-devel
 
 COPY scripts/pyenv-install pyenv-install
+COPY requirements.txt requirements.txt
 RUN ./pyenv-install
 
 RUN LIBS=$(find /build/pyenv -type f -executable -exec ldd {} 2>/dev/null \;|  grep "=>" | egrep -v ${GREP_EXCLUDE} | awk '{print $3}'| sort -u ) && \
