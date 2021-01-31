@@ -6,6 +6,7 @@ eval "$(pyenv init -)"
 pyenv install ${PYTHON_VERSION}
 mkdir -p build/bin
 mkdir -p build/lib
+ls $PYENV_ROOT
 cp -r $PYENV_ROOT build/pyenv
 cd build/bin
 ln -s ../pyenv/versions/${PYTHON_VERSION}/bin/python python
