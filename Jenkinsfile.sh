@@ -15,7 +15,3 @@ export SSUM=$SSUM
 aws s3 cp ${ASSET_FILE_NAME} ${S3_LOCATION} --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 ls -ltr
 rm -rf ${ASSET_FILE_NAME}
-echo $(envsubst < py3-runtime/asset.yml) > py3-runtime/asset.yml
-cd py3-runtime
-./build.sh
-cd ..
