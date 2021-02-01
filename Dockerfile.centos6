@@ -1,4 +1,4 @@
-FROM centos:6
+FROM siva9427/centos6-python-3.6.12:latest
 
 LABEL name="sensu/sensu-python-runtime-centos6"
 

@@ -1,17 +1,14 @@
 #!/bin/sh
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv && \
+#git clone https://github.com/pyenv/pyenv.git ~/.pyenv && \
 mkdir -p build/bin
 mkdir -p build/lib
 export PYENV_ROOT="$HOME/.pyenv" && \
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)" 
-pyenv install ${PYTHON_VERSION} &>> installog.txt
-ls -ltrh ../pyenv/versions/${PYTHON_VERSION}
-./../pyenv/versions/${PYTHON_VERSION}/bin/pip install -r requirements.txt
-mkdir -p build/bin
-mkdir -p build/lib
+#eval "$(pyenv init -)"
+#pyenv install ${PYTHON_VERSION}
+ls -ltrh ../pyenv/versions/3.6.12
+./../pyenv/versions/3.6.12/bin/pip install -r requirements.txt
 cp -r $PYENV_ROOT build/pyenv
-cp installog.txt build/pyenv
 cd build/bin
 ln -s ../pyenv/versions/${PYTHON_VERSION}/bin/python python
 ln -s ../pyenv/versions/${PYTHON_VERSION}/bin/pip pip
