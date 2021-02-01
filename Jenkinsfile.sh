@@ -10,8 +10,6 @@ docker run -itd --name ${CONTAINER_NAME} ${IMAGE_TAG}
 docker cp ${CONTAINER_NAME}:/assets/${ASSET_FILE_NAME} .
 docker rm -f ${CONTAINER_NAME}
 echo "Uploading sensu asset to S3 bucket: ${S3_BUCKET}"
-export SSUM=$(sha512sum ${ASSET_FILE_NAME} | cut -d ' ' -f 1)
-ls -ltrh
 aws s3 cp ${ASSET_FILE_NAME} ${S3_LOCATION} --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
 rm -rf ${ASSET_FILE_NAME}
 echo ${S3_FILE_URL}
