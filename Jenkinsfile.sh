@@ -6,7 +6,7 @@ export OSDISTRO=$OSDISTRO
 pip install --user awscli
 export PATH=/var/lib/jenkins/.local/bin:$PATH
 docker build --build-arg "ASSET_VERSION=${ASSET_VERSION}" --build-arg "PYTHON_VERSION=${PYTHON_VERSION}" -t sensu-python-runtime:${PYTHON_VERSION}-${OSVERSION} -f Dockerfile.${OSVERSION} .
-docker run -itd --name sensu-python-runtime_${PYTHON_VERSION}-${OSVERSION} sensu-python-runtime:${PYTHON_VERSION}-${OSVERSION}
+docker run -itd --name "sensu-python-runtime_${PYTHON_VERSION}-${OSVERSION}" sensu-python-runtime:${PYTHON_VERSION}-${OSVERSION}
 docker cp sensu-python-runtime_${PYTHON_VERSION}-${OSVERSION}:/assets/${ASSET_FILE_NAME} .
 docker rm -f sensu-python-runtime_${PYTHON_VERSION}-${OSVERSION}
 echo "Uploading sensu asset to S3 bucket: ${S3_BUCKET}"
