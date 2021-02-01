@@ -7,7 +7,7 @@ export PATH=/var/lib/jenkins/.local/bin:$PATH
 pip install --user awscli
 docker build --build-arg "ASSET_VERSION=${ASSET_VERSION}" --build-arg "PYTHON_VERSION=${PYTHON_VERSION}" -t ${IMAGE_TAG} -f Dockerfile.${OSVERSION} .
 docker run -itd --name ${CONTAINER_NAME} ${IMAGE_TAG}
-docker ${CONTAINER_NAME}:/assets/${ASSET_FILE_NAME} .
+docker cp ${CONTAINER_NAME}:/assets/${ASSET_FILE_NAME} .
 docker rm -f ${CONTAINER_NAME}
 echo "Uploading sensu asset to S3 bucket: ${S3_BUCKET}"
 export SSUM=$(sha512sum ${ASSET_FILE_NAME} | cut -d ' ' -f 1)
