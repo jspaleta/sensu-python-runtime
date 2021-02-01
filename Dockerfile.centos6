@@ -17,7 +17,9 @@ RUN yum -y install zlib-devel
 RUN yum -y install sqlite-devel
 RUN yum -y install openssl-devel
 RUN yum -y install readline-devel
+RUN yum -y install libffi-devel
 RUN yum -y install wget
+RUN yum -y install gcc
 
 COPY scripts/pyenv-install pyenv-install
 COPY requirements.txt requirements.txt
