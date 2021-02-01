@@ -30,3 +30,9 @@ jobs:
         run: |
           chmod 777 Jenkinsfile.sh
           ./Jenkinsfile.sh
+        env:
+          ASSET_VERSION: 0.0.1
+          PYTHON_VERSION: 3.6.12
+          OSVERSION: centos6
+          S3_FOLDER: /sensu/assets/
+          S3_BUCKET: objectrocket-product-versions
