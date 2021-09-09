@@ -1,4 +1,4 @@
-# Sensu Go Python Runtime Assets
+# EXPERIMENTAL Sensu Go Python Runtime Assets
 [![Build Status](https://travis-ci.org/jspaleta/sensu-python-runtime.svg?branch=master)](https://travis-ci.org/jspaleta/sensu-python-runtime)
 
 This project provides [Sensu Go Assets][sensu-assets] containing portable Python
