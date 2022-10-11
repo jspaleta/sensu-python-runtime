@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ignore_errors=0
-python_version=3.6.11
+python_version=3.8.14
 asset_version=${TRAVIS_TAG:-local-build}
 asset_filename=sensu-python-runtime_${asset_version}_python-${python_version}_${platform}_linux_amd64.tar.gz
 asset_image=sensu-python-runtime-${python_version}-${platform}:${asset_version}
