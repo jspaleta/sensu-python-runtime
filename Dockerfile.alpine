@@ -6,7 +6,8 @@ LABEL name="sensu/sensu-python-runtime-alpine"
 
 RUN apk --no-cache add build-base gmp-dev zlib-dev bzip2-dev sqlite-dev gdbm-dev db-dev readline-dev libffi-dev coreutils yaml-dev linux-headers autoconf \
   openssh-client openssl-dev libc6-compat \ 
-  wget git sudo bash bash-doc bash-completion
+  wget git sudo bash bash-doc bash-completion \
+	xz-dev
 
 COPY scripts/pyenv-install pyenv-install
 COPY scripts/binary_shim   binary_shim 
