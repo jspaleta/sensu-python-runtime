@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ignore_errors=0
-python_version=3.8.14
+python_version=3.11.1
 asset_version=${TRAVIS_TAG:-local-build}
 asset_filename=sensu-python-runtime_${asset_version}_python-${python_version}_${platform}_linux_amd64.tar.gz
 asset_image=sensu-python-runtime-${python_version}-${platform}:${asset_version}
@@ -24,11 +24,12 @@ else
     echo "Building Docker Image: sensu-python-runtime:${python_version}-${platform}"
     docker build --build-arg "PYTHON_VERSION=$python_version" --build-arg "ASSET_VERSION=$asset_version" -t ${asset_image} -f Dockerfile.${platform} .
     echo "Making Asset: /assets/sensu-python-runtime_${asset_version}_python-${python_version}_${platform}_linux_amd64.tar.gz"
-    docker run -v "$PWD/dist:/dist" ${asset_image} cp /assets/${asset_filename} /dist/
+    docker run --rm -v "$PWD/dist:/dist" ${asset_image} cp /assets/${asset_filename} /dist/
   #    #rm $PWD/test/*
   #    #cp $PWD/dist/${asset_filename} $PWD/dist/${asset_filename}
   else
     echo "Image already exists!!!"
+    docker run --rm -v "$PWD/dist:/dist" ${asset_image} cp /assets/${asset_filename} /dist/
     [ $ignore_errors -eq 0 ] && exit 1  
   fi
 fi
@@ -37,13 +38,12 @@ fi
 test_arr=($test_platforms)
 for test_platform in "${test_arr[@]}"; do
   echo "Test: ${test_platform}"
-  docker run --name python_runtime_platform_test -e platform -e test_platform=${test_platform} -e asset_filename=${asset_filename} -v "$PWD/tests/:/tests" -v "$PWD/dist:/dist" ${test_platform} /tests/test.sh
+  docker run --rm --name python_runtime_platform_test -e platform -e test_platform=${test_platform} -e asset_filename=${asset_filename} -v "$PWD/tests/:/tests" -v "$PWD/dist:/dist" ${test_platform} /tests/test.sh
   retval=$?
   if [ $retval -ne 0 ]; then
     echo "!!! Error testing ${asset_filename} on ${test_platform}"
     exit $retval
   fi
-  docker rm python_runtime_platform_test
 done
 
 if [ -z "$TRAVIS_TAG" ]; then exit 0; fi

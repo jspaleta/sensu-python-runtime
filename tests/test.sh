@@ -11,6 +11,6 @@ mkdir -p /build
 cd /build
 tar xzf /dist/$asset_filename
 #LD_LIBRARY_PATH="/build/lib:$LD_LIBRARY_PATH" /build/bin/python /tests/test_ssl_url.py
-LD_LIBRARY_PATH="/build/lib:$LD_LIBRARY_PATH" [ "$(/build/bin/python --version)" = "Python 3.6.11" ]
+[ "$(LD_LIBRARY_PATH="/build/lib:$LD_LIBRARY_PATH" /build/bin/python --version)" = "Python ${PYTHON_VERSION}" ]
 LD_LIBRARY_PATH="/build/lib:$LD_LIBRARY_PATH" /build/bin/python /tests/uuid_test.py
 LD_LIBRARY_PATH="/build/lib:$LD_LIBRARY_PATH" /build/bin/python /tests/module_search_path.py
