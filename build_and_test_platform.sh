@@ -38,7 +38,7 @@ fi
 test_arr=($test_platforms)
 for test_platform in "${test_arr[@]}"; do
   echo "Test: ${test_platform}"
-  docker run --rm --name python_runtime_platform_test -e platform -e test_platform=${test_platform} -e asset_filename=${asset_filename} -v "$PWD/tests/:/tests" -v "$PWD/dist:/dist" ${test_platform} /tests/test.sh
+  docker run --rm --name python_runtime_platform_test -e "PYTHON_VERSION=$python_version" -e platform -e test_platform=${test_platform} -e asset_filename=${asset_filename} -v "$PWD/tests/:/tests" -v "$PWD/dist:/dist" ${test_platform} /tests/test.sh
   retval=$?
   if [ $retval -ne 0 ]; then
     echo "!!! Error testing ${asset_filename} on ${test_platform}"
