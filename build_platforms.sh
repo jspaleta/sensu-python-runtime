@@ -19,7 +19,7 @@ if [[ retval -ne 0 ]]; then
 fi
 
 # CentOS7 platform
-platform="centos7" test_platforms=" almalinux:8 centos:7 almalinux:9" ./build_and_test_platform.sh
+platform="centos7" test_platforms="centos:7 almalinux:8 almalinux:9" ./build_and_test_platform.sh
 retval=$?
 if [[ retval -ne 0 ]]; then
   exit $retval
